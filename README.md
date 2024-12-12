@@ -9,3 +9,7 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 '''
+
+
+additional information:
+'templates' folder includes all html files.
