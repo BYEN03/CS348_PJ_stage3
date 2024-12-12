@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Course</title>
+</head>
+<body>
+    <h1>Add New Course</h1>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('new_course') }}">
+        <label for="course_name">Course Name:</label>
+        <input type="text" id="course_name" name="course_name" required>
+
+        <label for="instructor">Instructor:</label>
+        <input type="text" id="instructor" name="instructor" required>
+
+        <label for="credits">Credits:</label>
+        <input type="number" id="credits" name="credits" required>
+
+        <label for="capacity">Capacity:</label>
+        <input type="number" id="capacity" name="capacity" required><br>
+
+        <input type="submit" value="Add Course">
+    </form>
+
+    <a href="{{ url_for('show_all') }}">Back to main page</a>
+</body>
+</html>

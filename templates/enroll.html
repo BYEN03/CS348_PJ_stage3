@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll a Student</title>
+</head>
+<body>
+    <h1>Enroll a Student in a Course</h1>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('enroll') }}" method="post">
+        <label for="student_id">Student ID - Name:</label>
+        <select name="student_id" id="student_id">
+            {% for student in students %}
+            <option value="{{ student.student_id }}">{{ student.student_id }} - {{ student.first_name }} {{ student.last_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="course_id">Course ID - Name:</label>
+        <select name="course_id" id="course_id">
+            {% for course in courses %}
+            <option value="{{ course.course_id }}">{{ course.course_id }} - {{ course.course_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Enroll</button>
+    </form>
+
+    <hr>
+    <h2><a href="{{ url_for('show_all') }}">Back to Main Page</a></h2>
+</body>
+</html>

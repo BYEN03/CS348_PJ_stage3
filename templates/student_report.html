@@ -1,0 +1,40 @@
+<!-- student_report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report</title>
+</head>
+<body>
+    <h1>Report for {{ student.first_name }} {{ student.last_name }} (ID: {{ student.student_id }})</h1>
+    <h2>Total Credits: {{ total_credits }}</h2>
+    <p><strong>Total Enrolled Courses:</strong> {{ total_enrolled_courses }}</p>
+
+    {% if enrollment_info %}
+        <h2>Enrollment Information</h2>
+        <p><strong>Course Name:</strong> {{ course.course_name }}</p>
+        <p><strong>Instructor:</strong> {{ enrollment_info['instructor'] }}</p>
+        <p><strong>Current Enrollment:</strong> {{ enrollment_info['current_enrollment'] }}</p>
+        <p><strong>Capacity:</strong> {{ enrollment_info['capacity'] }}</p>
+        <p><strong>Popularity:</strong> {{ popularity }}%</p>
+    {% else %}
+        <p>No enrollment information found for the selected course.</p>
+    {% endif %}
+
+    {% if recommended_courses %}
+        <h2>Recommended Courses</h2>
+        <ul>
+            {% for course in recommended_courses %}
+                <p><strong>course_id, course_name, credits</p>
+                <li>{{ course.course_id }} {{ course.course_name }} ({{ course.credits }} credits)</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recommended courses available.</p>
+    {% endif %}
+
+    <h2><a href="{{ url_for('show_all') }}">Back to Main Page</a></h2>
+
+</body>
+</html>
