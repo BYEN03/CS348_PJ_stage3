@@ -1,3 +1,5 @@
+This is a university course system application implemented using python, flask, and sqlalchemy.
+
 How to use:
 
 1. Run app.py
@@ -10,6 +12,3 @@ with app.app_context():
     db.create_all()
 '''
 
-
-additional information:
-'templates' folder includes all html files.
